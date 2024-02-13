@@ -1,13 +1,12 @@
 require("guillermo")
-local set = vim.opt
-set.tabstop = 4
-set.softtabstop = 4
-set.shiftwidth = 4
+-- Set tab width to 4 spaces
+vim.cmd[[set tabstop=4]]
+vim.cmd[[set shiftwidth=4]]
+vim.cmd[[set expandtab]]
 
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 
--- Set the background color to black
-vim.cmd('hi Normal guibg=black ctermbg=black')
+vim.cmd('hi Normal ctermbg=none guibg=none')
 -- Hide the status line
 vim.o.laststatus = 0
