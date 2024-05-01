@@ -4,15 +4,16 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>fs', require("telescope").extensions.live_grep_args.live_grep_args, { noremap = true })
 
 --------------------------------------------------------------------------------------------------------------------------- 
-local floating_window_id = nil                                                                                           --
-local function toggle_float()                                                                                            --
-    if floating_window_id then                                                                                           --
-        vim.api.nvim_set_current_win(floating_window_id)                                                                 --
-        floating_window_id = nil                                                                                         --
-    else                                                                                                                 --
-        _, floating_window_id = vim.diagnostic.open_float()                                                              --
-    end                                                                                                                  --
-end                                                                                                                      --
-                                                                                                                         --
-vim.keymap.set('n', '<leader>sl', toggle_float, {})                                                                      --
+local id, row, col = nil, 0, 0
+local function toggle_float()
+    local current_row, current_col = unpack(vim.api.nvim_win_get_cursor(0))
+    if id ~= nil and current_row == row and current_col == col then
+        vim.api.nvim_set_current_win(id)
+        id = nil
+    else
+        _, id = vim.diagnostic.open_float()
+    end
+    row, col = current_row, current_col
+end
+vim.keymap.set('n', '<leader>sl', toggle_float, {})
 ---------------------------------------------------------------------------------------------------------------------------
