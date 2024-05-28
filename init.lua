@@ -10,3 +10,7 @@ vim.cmd([[colorscheme gruvbox]])
 vim.cmd('hi Normal ctermbg=none guibg=none')
 -- Hide the status line
 vim.o.laststatus = 0
+-- Hide cursor positoin
+vim.o.ruler = false
+-- Hide keys
+vim.o.showcmd =false
