@@ -14,3 +14,5 @@ vim.o.laststatus = 0
 vim.o.ruler = false
 -- Hide keys
 vim.o.showcmd =false
+-- nowrap
+vim.o.wrap = false
